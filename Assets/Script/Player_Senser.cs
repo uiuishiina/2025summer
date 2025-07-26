@@ -29,6 +29,10 @@ public class Player_Senser : MonoBehaviour
                 traget.Add(Enemy[i]);
                 Enemy[i].GetComponent<Renderer>().material.color = Color.red;
             }
+            else
+            {
+                Enemy[i].GetComponent<Renderer>().material.color = Color.white;
+            }
         }
     }
 }
