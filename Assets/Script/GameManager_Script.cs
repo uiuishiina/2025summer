@@ -20,7 +20,7 @@ public class GameManager_Script : MonoBehaviour
         var forward = Player.transform.forward;
         for(int i = 0; i < 24; i++)
         {
-            float posz = Random.Range(3, 5), posy = Random.Range(-2, 3), posx = Random.Range(-5, 6);
+            float posz = Random.Range(3, 5), posy = Random.Range(-2, 3), posx = Random.Range(-10, 11);
             GameObject ene = Instantiate(Enemy, new Vector3(posx, posy, posz), Quaternion.identity);
             ene.GetComponent<Enemy_move>().set();
             enemy.Add( ene );
