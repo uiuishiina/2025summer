@@ -1,8 +1,15 @@
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Windows;
+using Input = UnityEngine.Input;
 
 public class player_move : MonoBehaviour
 {
-    Vector3 vec = new Vector3();
+
+    [SerializeField]
+    float rote = 0;
+    Vector3 direction;
     void Start()
     {
         
@@ -11,15 +18,38 @@ public class player_move : MonoBehaviour
     void FixedUpdate()
     {
         move();
+        Rote();
     }
     private void move()
     {
-        /*
-        var pos = transform.position;
-        var direction = new Vector3();
-        var length = (direction - pos).normalized;
-        length *= 0.2f;
-        transform.position = length;
-        */
+        if(Input.GetKey(KeyCode.W))
+        {
+            transform.position += transform.forward * 0.1f;
+        }
+        else if(Input.GetKey(KeyCode.S))
+        {
+            transform.position -= transform.forward * 0.1f;
+        }
+    }
+    private void Rote()
+    {
+        var ang = transform.localEulerAngles;
+        if(Input.GetKey(KeyCode.UpArrow))
+        {
+            ang.x += rote;
+        }
+        else if(Input.GetKey(KeyCode.DownArrow))
+        {
+            ang.x -= rote;
+        }
+        if(Input.GetKey(KeyCode.RightArrow))
+        {
+            ang.y += rote;
+        }
+        else if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            ang.y -= rote;
+        }
+        transform.localEulerAngles = ang;
     }
 }
