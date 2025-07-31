@@ -36,7 +36,7 @@ public class Player_Bluet : MonoBehaviour
     }
     private void Move()
     {
-        transform.position += transform.forward * 0.1f;
+        transform.position += transform.forward * 0.05f;
     }
     void Rote()
     {
