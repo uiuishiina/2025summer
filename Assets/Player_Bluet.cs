@@ -6,7 +6,10 @@ public class Player_Bluet : MonoBehaviour
     GameObject Enemy = null;
     Vector3 vector = new Vector3();
     Matrix4x4 matrix4X4 = Matrix4x4.identity;
+    [SerializeField]
     float Angle = 20;
+    [SerializeField]
+    float speed = 0.05f;
     public void TargetSet(GameObject enemy, Vector3 vec)
     {
         Enemy = enemy;
@@ -36,7 +39,7 @@ public class Player_Bluet : MonoBehaviour
     }
     private void Move()
     {
-        transform.position += transform.forward * 0.05f;
+        transform.position += transform.forward * speed;
     }
     void Rote()
     {
@@ -47,8 +50,8 @@ public class Player_Bluet : MonoBehaviour
         if (dot < Angle) { dot = Angle; }
         var rad = Mathf.Acos(dot) * 0.1f;
         var closs = Vector3.Cross(forward, vec);
-        
         transform.rotation*= Quaternion.AngleAxis(Mathf.Rad2Deg * rad, closs);
+
     }
     void Collision()
     {
@@ -58,6 +61,7 @@ public class Player_Bluet : MonoBehaviour
 
         if (myBounds.Intersects(enemyBounds))
         {
+            Enemy.GetComponent<Enemy_move>().Shake();
             Destroy(gameObject);
         }
     }
