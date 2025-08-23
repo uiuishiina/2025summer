@@ -21,7 +21,7 @@ public class Enemy_move : MonoBehaviour
         time += Time.deltaTime;
         if (c) 
         {
-            transform.position = new Vector3(pos.x, cpos + Mathf.PingPong(x * time * 2, x * 0.5f), pos.z);
+            transform.position = new Vector3(pos.x, cpos + Mathf.PingPong(x * time * 3, x * 0.25f), pos.z);
         }
         else
         {
@@ -43,7 +43,7 @@ public class Enemy_move : MonoBehaviour
     {
         time = 0;
         GetComponent<Renderer>().material.color = Color.yellow;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         time = 0;
         cpos = cpos - spos;
         GetComponent<Renderer>().material.color = Color.white;

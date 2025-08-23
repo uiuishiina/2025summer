@@ -13,7 +13,6 @@ public class GameManager_Script : MonoBehaviour
     {
         set();
     }
-
     private void set()
     {
         var forward = Player.transform.forward;
