@@ -21,8 +21,18 @@ public class Player_Bluet : MonoBehaviour
     void Setr(Vector3 vec)
     {
         var forward = vec.normalized;
-        var right = Vector3.Cross(transform.up, forward).normalized;
-        var Up = Vector3.Cross(forward, right);
+        var right = new Vector3(1, 0, 0);
+        var Up = new Vector3(0, 1, 0);
+        if (vec.y==1||vec.y==-1)
+        {
+            Up = Vector3.Cross(forward, right).normalized;
+            right = Vector3.Cross(Up, forward).normalized;
+        }
+        else
+        {
+            right = Vector3.Cross(transform.up, forward).normalized;
+            Up = Vector3.Cross(forward, right).normalized;
+        }
         Matrix4x4 m = new Matrix4x4();
         m.SetColumn(0, new Vector4(right.x, right.y, right.z, 0));
         m.SetColumn(1, new Vector4(Up.x, Up.y, Up.z, 0));
@@ -51,11 +61,9 @@ public class Player_Bluet : MonoBehaviour
         var rad = Mathf.Acos(dot) * 0.1f;
         var closs = Vector3.Cross(forward, vec);
         transform.rotation*= Quaternion.AngleAxis(Mathf.Rad2Deg * rad, closs);
-
     }
     void Collision()
     {
-        
         Bounds myBounds = GetComponent<Renderer>().bounds;
         Bounds enemyBounds = Enemy.GetComponent<Renderer>().bounds;
 

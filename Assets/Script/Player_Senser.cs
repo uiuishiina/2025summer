@@ -68,11 +68,7 @@ public class Player_Senser : MonoBehaviour
                 Enemy[i].GetComponent<Renderer>().material.color = Color.white;
             }
         }
-        target = viewenemy
-                .OrderByDescending(a => a.D)
-                .Take(8)
-                .Select(b => b.E)
-                .ToList();
+        target = viewenemy.OrderByDescending(a => a.D).Take(8).Select(b => b.E).ToList();
         foreach (var Object in target)
         {
             Object.GetComponent<Renderer>().material.color = Color.red;
@@ -85,10 +81,9 @@ public class Player_Senser : MonoBehaviour
             }
         }
     }
-
     void BluetShot()
     {
-        for(int i= 0;i<target.Count;i++)
+        for(int i= 0;i < target.Count; i++)
         {
             GameObject bu = Instantiate(Bluet, transform.position + shotpos[i], Quaternion.identity);
             bu.GetComponent<Player_Bluet>().TargetSet(target[i],shotpos[i]);
